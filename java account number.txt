@@ -1,0 +1,40 @@
+import java.util.Random;
+
+public class AccountNumbersGenerator {
+
+    private static String cif;
+    private static String accountType;
+    private static int accountSeq;
+
+    public static void accountNumbersGenerator(String cif, String accountType) {
+        accountSeq = ifNull(getMaxAccountSeq(cif, accountType), 0) + 1;
+        String accountNo = cif.replaceAll("\"", "") + getAccountTypeID(accountType) + String.format("%02d", accountSeq);
+        System.out.println(accountNo);
+    }
+
+    private static int getMaxAccountSeq(String cif, String accountType) {
+        // Your logic for getting maximum account sequence goes here
+    }
+
+    private static String getAccountTypeID(String accountType) {
+        // Your logic for getting account type ID goes here
+    }
+
+    private static int ifNull(int value, int defaultValue) {
+        if (value == 0) {
+            return defaultValue;
+        }
+        return value;
+    }
+
+    public static void main(String[] args) {
+        cif = "\"642223904\"";
+        Random random = new Random();
+        accountType = "main"; // random.nextInt(actTypesList.length - 1);
+        int c = 0;
+        while (c < 100) {
+            accountNumbersGenerator(cif, accountType);
+            c++;
+        }
+    }
+}
